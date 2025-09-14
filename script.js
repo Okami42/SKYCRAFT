@@ -1,4 +1,4 @@
-// Navigation et effets de scroll
+
 document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.querySelector('.navbar');
     const hamburger = document.querySelector('.hamburger');
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalImg = document.getElementById('modal-image');
     const closeModal = document.querySelector('.modal-close');
 
-    // Effet de scroll sur la navigation
+    
     function handleScroll() {
         if (window.scrollY > 100) {
             navbar.classList.add('scrolled');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Animation des éléments au scroll
+    
     function animateOnScroll() {
         const elements = document.querySelectorAll('.feature-card, .gallery-item, .download-card, .stat');
         
@@ -32,13 +32,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Navigation mobile
+    
     function toggleMobileNav() {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
         navActions.classList.toggle('active');
         
-        // Animation du hamburger
+        
         const spans = hamburger.querySelectorAll('span');
         if (hamburger.classList.contains('active')) {
             spans[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Smooth scroll pour les liens d'ancrage
+    
     function smoothScrollToAnchor(e) {
         const href = e.currentTarget.getAttribute('href');
         
@@ -61,14 +61,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.getElementById(targetId);
             
             if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 80; // Offset pour la navbar fixe
+                const offsetTop = targetElement.offsetTop - 80; 
                 
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
                 });
                 
-                // Fermer le menu mobile si ouvert
+                
                 if (hamburger.classList.contains('active')) {
                     toggleMobileNav();
                 }
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Galerie modale
+    
     function openModal(imageSrc) {
         modal.style.display = 'block';
         modalImg.src = imageSrc;
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = 'auto';
     }
 
-    // Parallax effect pour le hero
+    
     function parallaxEffect() {
         const scrolled = window.pageYOffset;
         const heroGif = document.querySelector('.hero-gif');
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Compteur animé pour les statistiques
+    
     function animateCounters() {
         const counters = document.querySelectorAll('.stat h3');
         
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Lazy loading pour les images
+    
     function lazyLoadImages() {
         const images = document.querySelectorAll('img[data-src]');
         const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
         images.forEach(img => imageObserver.observe(img));
     }
 
-    // Effet de typing pour le titre
+    
     function typeWriter(element, text, speed = 100) {
         let i = 0;
         element.textContent = '';
@@ -152,19 +152,19 @@ document.addEventListener('DOMContentLoaded', function() {
         type();
     }
 
-    // Gestion des formulaires (si nécessaire)
+    
     function handleFormSubmission(form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Animation de chargement
+            
             const submitBtn = form.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
             
             submitBtn.textContent = 'Envoi en cours...';
             submitBtn.disabled = true;
             
-            // Simulation d'envoi
+            
             setTimeout(() => {
                 submitBtn.textContent = 'Envoyé !';
                 setTimeout(() => {
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Gestion du thème (si nécessaire pour le futur)
+    
     function initTheme() {
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
@@ -184,24 +184,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Event listeners
+    
     window.addEventListener('scroll', () => {
         handleScroll();
         animateOnScroll();
         parallaxEffect();
     });
 
-    // Navigation mobile
+    
     if (hamburger) {
         hamburger.addEventListener('click', toggleMobileNav);
     }
 
-    // Liens d'ancrage
+    
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', smoothScrollToAnchor);
     });
 
-    // Galerie
+    
     galleryItems.forEach(item => {
         item.addEventListener('click', function() {
             const img = this.querySelector('img');
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Fermeture de la modale
+    
     if (closeModal) {
         closeModal.addEventListener('click', closeModalFunction);
     }
@@ -224,14 +224,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Fermeture avec Escape
+    
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.style.display === 'block') {
             closeModalFunction();
         }
     });
 
-    // Fermeture du menu mobile en cliquant à l'extérieur
+    
     document.addEventListener('click', function(e) {
         if (hamburger.classList.contains('active') && 
             !hamburger.contains(e.target) && 
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Animation des boutons au survol
+    
     document.querySelectorAll('.btn-primary, .btn-secondary, .btn-outline').forEach(btn => {
         btn.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-2px) scale(1.02)';
@@ -252,10 +252,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Gestion des formulaires
+    
     document.querySelectorAll('form').forEach(handleFormSubmission);
 
-    // Animation des cartes au survol
+    
     document.querySelectorAll('.feature-card, .download-card, .gallery-item').forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px) scale(1.02)';
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Intersection Observer pour les animations
+    
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in-up');
                 
-                // Animation spéciale pour les statistiques
+                
                 if (entry.target.classList.contains('community-stats')) {
                     setTimeout(() => {
                         animateCounters();
@@ -287,21 +287,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observer les éléments à animer
+    
     document.querySelectorAll('.feature-card, .gallery-item, .download-card, .community-stats, .section-header').forEach(el => {
         observer.observe(el);
     });
 
-    // Initialisation
+    
     initTheme();
     lazyLoadImages();
     
-    // Animation d'entrée pour le hero
+    
     setTimeout(() => {
         document.querySelector('.hero-content').classList.add('fade-in-up');
     }, 500);
 
-    // Préchargement des images importantes
+    
     function preloadImages() {
         const imageUrls = [
             'public/SC_Overview.gif',
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     preloadImages();
 
-    // Performance: Throttle scroll events
+    
     let scrollTimer = null;
     const throttledScroll = () => {
         if (scrollTimer !== null) {
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
             animateOnScroll();
             parallaxEffect();
             scrollTimer = null;
-        }, 16); // ~60fps
+        }, 16); 
     };
 
     window.removeEventListener('scroll', () => {
@@ -341,17 +341,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('scroll', throttledScroll);
 
-    // Gestion du redimensionnement de la fenêtre
+    
     window.addEventListener('resize', () => {
-        // Fermer le menu mobile si la fenêtre devient plus large
+        
         if (window.innerWidth > 768 && hamburger.classList.contains('active')) {
             toggleMobileNav();
         }
     });
 
-    // Easter egg: Konami code
+    
     let konamiCode = [];
-    const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
+    const konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; 
 
     document.addEventListener('keydown', function(e) {
         konamiCode.push(e.keyCode);
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         if (konamiCode.join(',') === konami.join(',')) {
-            // Easter egg activé !
+            
             document.body.style.animation = 'rainbow 2s infinite';
             setTimeout(() => {
                 document.body.style.animation = '';
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // CSS pour l'easter egg
+    
     const style = document.createElement('style');
     style.textContent = `
         @keyframes rainbow {
@@ -384,9 +384,9 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('💡 Astuce: Essayez le code Konami pour un effet spécial!');
 });
 
-// Fonctions utilitaires
+
 const Utils = {
-    // Débounce pour optimiser les performances
+    
     debounce: function(func, wait, immediate) {
         let timeout;
         return function executedFunction() {
@@ -403,7 +403,7 @@ const Utils = {
         };
     },
 
-    // Throttle pour limiter la fréquence d'exécution
+    
     throttle: function(func, limit) {
         let inThrottle;
         return function() {
@@ -417,7 +417,7 @@ const Utils = {
         };
     },
 
-    // Animation smooth vers un élément
+    
     scrollToElement: function(element, offset = 80) {
         const elementPosition = element.offsetTop - offset;
         window.scrollTo({
@@ -426,7 +426,7 @@ const Utils = {
         });
     },
 
-    // Vérifier si un élément est visible
+    
     isElementInViewport: function(el) {
         const rect = el.getBoundingClientRect();
         return (
@@ -437,12 +437,12 @@ const Utils = {
         );
     },
 
-    // Générer un ID unique
+    
     generateId: function() {
         return '_' + Math.random().toString(36).substr(2, 9);
     },
 
-    // Formater les nombres
+    
     formatNumber: function(num) {
         if (num >= 1000000) {
             return (num / 1000000).toFixed(1) + 'M';
